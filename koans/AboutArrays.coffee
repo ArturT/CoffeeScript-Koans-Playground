@@ -3,8 +3,8 @@ describe 'About Arrays', ->
   # We shall contemplate truth by testing reality, via spec expectations.
     emptyArray = []
 
-    expect(typeof emptyArray).toBe(FILL_ME_IN) # A mistake? - http://j.mp/oRuo6R
-    expect(emptyArray.length).toBe(FILL_ME_IN)
+    expect(typeof emptyArray).toBe('object') # A mistake? - http://j.mp/oRuo6R
+    expect(emptyArray.length).toBe(0)
 
 
   it 'should understand array literals', ->
@@ -15,10 +15,10 @@ describe 'About Arrays', ->
     expect(array).toEqual([1])
 
     array[1] = 2
-    expect(array).toEqual([1, FILL_ME_IN])
+    expect(array).toEqual([1, 2])
 
     array.push(3)
-    expect(array).toEqual(FILL_ME_IN)
+    expect(array).toEqual([1..3])
 
 
   it 'should understand array length', ->
