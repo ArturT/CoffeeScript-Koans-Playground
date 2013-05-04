@@ -11,20 +11,27 @@ describe 'About Applying What We Have Learnt', ->
   it 'should find a needle in a haystack (imperative)', ->
     findNeedle = (ops) ->
       hasInvalidOperation = false
-      for i in [0..ops.length]
+      for i in [0..ops.length-1]
         if (ops[i].direction == 'FWD' && ops[i].distance > 100)
           hasInvalidOperation = true
           break
       return hasInvalidOperation
 
-    expect(findNeedle(operations)).toBe(FILL_ME_IN)
+    expect(findNeedle(operations)).toBe(true)
 
 
   it 'should find needle in a haystack (functional)', ->
     # FILL_ME_IN solution goes in here
     # HINT: one way of doing this would be a 'for in when' construct using sum and
     # filter functions, the existential operator is also useful
-    (expect findNeedle(operations)).toBe(FILL_ME_IN)
+    findNeedle = (ops) ->
+      condition = (i) -> ops[i].direction == 'FWD' && ops[i].distance > 100
+      #needleKeys = [0..ops.length-1].filter condition
+      needleKeys =
+        i for i in [0..ops.length-1] when condition i
+      needleKeys.length > 0
+
+    (expect findNeedle(operations)).toBe(true)
 
 
   it 'should add all the natural numbers below 1000 that are multiples of 3 or 5 (imperative)', ->
