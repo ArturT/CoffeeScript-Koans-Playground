@@ -24,12 +24,25 @@ describe 'About Applying What We Have Learnt', ->
     # FILL_ME_IN solution goes in here
     # HINT: one way of doing this would be a 'for in when' construct using sum and
     # filter functions, the existential operator is also useful
+
+    # example 1. filter and existential operator
     findNeedle = (ops) ->
-      condition = (i) -> ops[i].direction == 'FWD' && ops[i].distance > 100
-      #needleKeys = [0..ops.length-1].filter condition
-      needleKeys =
-        i for i in [0..ops.length-1] when condition i
-      needleKeys.length > 0
+      condition = (op) -> op.direction == 'FWD' && op.distance > 100
+      needleKeys = ops.filter condition
+      needleKeys?
+
+    (expect findNeedle(operations)).toBe(true)
+
+
+    # example 2. recursion
+    findNeedle = (ops) ->
+      if ops?
+        if ops[0].direction == 'FWD' && ops[0].distance > 100
+          true
+        else
+          findNeedle(ops[1..-1])
+      else
+        false
 
     (expect findNeedle(operations)).toBe(true)
 
