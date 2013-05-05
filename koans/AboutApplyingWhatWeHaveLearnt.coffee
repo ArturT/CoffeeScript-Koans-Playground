@@ -126,28 +126,21 @@ describe 'About Applying What We Have Learnt', ->
 
 
 # UNCOMMENT FOR EXTRA CREDIT
-  #it 'should find the largest prime factor of a composite number', ->
+  is_prime = (n) ->
+    if n == 2
+      true
+    else if n < 2
+      false
+    else
+      isPrime = true
+      for i in [2..n-1]
+        if n % i == 0
+          isPrime = false
+          break
+      isPrime
 
-  #it 'should find the largest palindrome made from the product of two 3 digit numbers', ->
 
-  #it 'should what is the smallest number divisible by each of the numbers 1 to 20', ->
-
-  #it 'should what is the difference between the sum of the squares and the square of the sums', ->
-
-  it 'should find the 10001st prime', ->
-    is_prime = (n) ->
-      if n == 2
-        true
-      else if n < 2
-        false
-      else
-        isPrime = true
-        for i in [2..n-1]
-          if n % i == 0
-            isPrime = false
-            break
-        isPrime
-
+  it 'should check if number is prime', ->
     expect(is_prime(-1)).toBe(false)
     expect(is_prime(0)).toBe(false)
     expect(is_prime(1)).toBe(false)
@@ -157,6 +150,20 @@ describe 'About Applying What We Have Learnt', ->
     expect(is_prime(10)).toBe(false)
     expect(is_prime(17)).toBe(true)
 
+
+  #it 'should find the largest prime factor of a composite number', ->
+
+
+  #it 'should find the largest palindrome made from the product of two 3 digit numbers', ->
+
+
+  #it 'should what is the smallest number divisible by each of the numbers 1 to 20', ->
+
+
+  #it 'should what is the difference between the sum of the squares and the square of the sums', ->
+
+
+  it 'should find the 10001st prime', ->
     find_prime_at = (order) ->
       sum = 0
       n = 0
