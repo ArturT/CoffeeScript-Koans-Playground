@@ -52,14 +52,35 @@ describe 'About Applying What We Have Learnt', ->
     for i in [1..1000]
       if (i % 3 == 0 || i % 5 == 0)
         total += i
-    expect(total).toBe(FILL_ME_IN)
+    expect(total).toBe(234168)
 
 
   it 'should add all the natural numbers below 1000 that are multiples of 3 or 5 (functional)', ->
     # FILL_ME_IN solution goes in here
     # HINT: one way of doing this would be a 'for in when' construct using sum and
     # filter functions
-    (expect FILL_ME_IN).toBe(234168)
+
+    # example 1. filter
+    sum_multiples_of_3_or_5 = (number) ->
+      condition = (n) -> n % 3 == 0 || n % 5 == 0
+      validNumbers = [0..number].filter condition
+      validNumbers.reduce (x, y) -> x + y
+
+    (expect sum_multiples_of_3_or_5(1000)).toBe(234168)
+
+
+    # example 2. recursion
+    sum_multiples_of_3_or_5 = (number) ->
+      condition = (n) -> n % 3 == 0 || n % 5 == 0
+      if number > 0
+        if condition(number)
+          number + sum_multiples_of_3_or_5(number-1)
+        else
+          sum_multiples_of_3_or_5(number-1)
+      else
+        0
+
+    (expect sum_multiples_of_3_or_5(1000)).toBe(234168)
 
 
   it 'should find the sum of all the even valued terms in the fibonacci sequence which do not exceed four million (imperative)', ->
