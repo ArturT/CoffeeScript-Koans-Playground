@@ -96,14 +96,33 @@ describe 'About Applying What We Have Learnt', ->
         sum += currentFib
       i+=1
 
-    expect(sum).toBe(FILL_ME_IN)
+    expect(sum).toBe(4613732)
 
 
   it 'should find the sum of all the even valued terms in the fibonacci sequence which do not exceed four million (functional)', ->
     # FILL_ME_IN solution goes in here
     # HINT: one way of doing this would be to construct an array of Fibonacci numbers
     # using a function and a while loop, and then to filter it using an even function
-    expect(FILL_ME_IN).toBe(4613732)
+
+    # example 1. fibonacci recursion function, even function, while loop, reduce
+    fibonacci = (n) ->
+      if n == 1 || n == 2
+        1
+      else
+        fibonacci(n - 1) + fibonacci(n - 2)
+
+    even = (n) -> n % 2 == 0
+
+    fibonacci_even_numbers_which_do_not_exceed = (limit_number) ->
+      fibArray = []
+      i = 1
+      while limit_number >= fibNumber = fibonacci(i)
+        fibArray.push(fibNumber)
+        i += 1
+      fibEvenNumbers = fibArray.filter even
+      fibEvenNumbers.reduce (x, y) -> x + y
+
+    expect(fibonacci_even_numbers_which_do_not_exceed(4000000)).toBe(4613732)
 
 
 ###
