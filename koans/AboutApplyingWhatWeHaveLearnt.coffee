@@ -151,7 +151,20 @@ describe 'About Applying What We Have Learnt', ->
     expect(is_prime(17)).toBe(true)
 
 
-  #it 'should find the largest prime factor of a composite number', ->
+  it 'should find the largest prime factor of a composite number', ->
+    largest_prime_factor_of = (composite_number) ->
+      largest_prime_factor = null
+      n = 2
+      while n < composite_number
+        largest_prime_factor = n if is_prime(n) && composite_number % n == 0
+        n += 1
+      largest_prime_factor
+
+    expect(largest_prime_factor_of(1)).toBe(null)
+    expect(largest_prime_factor_of(2)).toBe(null)
+    expect(largest_prime_factor_of(14)).toBe(7)
+    expect(largest_prime_factor_of(46)).toBe(23)
+    expect(largest_prime_factor_of(3*23*7)).toBe(23)
 
 
   #it 'should find the largest palindrome made from the product of two 3 digit numbers', ->
