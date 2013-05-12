@@ -170,7 +170,26 @@ describe 'About Applying What We Have Learnt', ->
   #it 'should find the largest palindrome made from the product of two 3 digit numbers', ->
 
 
-  #it 'should what is the smallest number divisible by each of the numbers 1 to 20', ->
+  it 'should what is the smallest number divisible by each of the numbers 1 to 20', ->
+    smallest_number_divisible_by_each_of = (numbers) ->
+      n = 0
+      smallest_number = null
+      while smallest_number == null
+        n += 1
+        found = true
+        for number in numbers
+          if n % number != 0
+            found = false
+            break
+        smallest_number = n if found
+      smallest_number
+
+    expect(smallest_number_divisible_by_each_of([1])).toBe(1)
+    expect(smallest_number_divisible_by_each_of([1,2])).toBe(2)
+    expect(smallest_number_divisible_by_each_of([1,2,3])).toBe(6)
+    expect(smallest_number_divisible_by_each_of([1..4])).toBe(12)
+    # it takes some time
+    #expect(smallest_number_divisible_by_each_of([1..20])).toBe(232792560)
 
 
   #it 'should what is the difference between the sum of the squares and the square of the sums', ->
