@@ -167,7 +167,47 @@ describe 'About Applying What We Have Learnt', ->
     expect(largest_prime_factor_of(3*23*7)).toBe(23)
 
 
-  #it 'should find the largest palindrome made from the product of two 3 digit numbers', ->
+  it 'should find the largest palindrome made from the product of two 3 digit numbers', ->
+    min_n_digit_num = (n) ->
+      Math.pow(10,n-1)
+
+    expect(min_n_digit_num(1)).toBe(1)
+    expect(min_n_digit_num(2)).toBe(10)
+    expect(min_n_digit_num(3)).toBe(100)
+
+    max_n_digit_num = (n) ->
+      Math.pow(10,n)-1
+
+    expect(max_n_digit_num(1)).toBe(9)
+    expect(max_n_digit_num(2)).toBe(99)
+    expect(max_n_digit_num(3)).toBe(999)
+
+    is_palindrome = (n) ->
+      n.toString() == n.toString().split('').reverse().join('')
+
+    expect(is_palindrome(11)).toBe(true)
+    expect(is_palindrome(121)).toBe(true)
+    expect(is_palindrome(31213)).toBe(true)
+    expect(is_palindrome(42)).toBe(false)
+    expect(is_palindrome(123)).toBe(false)
+    expect(is_palindrome(49214)).toBe(false)
+
+    largest_palindrome_from_product_of_two_n_digit_number = (n) ->
+      min = min_n_digit_num(n)
+      max = max_n_digit_num(n)
+      range = [min..max]
+
+      max_palindrome = null
+      for x in range
+        for y in range
+          product = x * y
+          max_palindrome = product if is_palindrome(product)
+      max_palindrome
+
+    # The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 x 99.
+    # http://codeblog.dhananjaynene.com/2010/01/find-the-largest-palindrome-made-from-the-product-of-two-3-digit-numbers/
+    expect(largest_palindrome_from_product_of_two_n_digit_number(2)).toBe(9009)
+    expect(largest_palindrome_from_product_of_two_n_digit_number(3)).toBe(580085)
 
 
   it 'should what is the smallest number divisible by each of the numbers 1 to 20', ->
