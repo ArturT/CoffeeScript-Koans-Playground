@@ -192,7 +192,36 @@ describe 'About Applying What We Have Learnt', ->
     #expect(smallest_number_divisible_by_each_of([1..20])).toBe(232792560)
 
 
-  #it 'should what is the difference between the sum of the squares and the square of the sums', ->
+  it 'should what is the difference between the sum of the squares and the square of the sums', ->
+    sum_of_squares = (n) ->
+      sum = 0
+      sum += i*i for i in [0..n]
+      sum
+
+    expect(sum_of_squares(0)).toBe(0)
+    expect(sum_of_squares(1)).toBe(1)
+    expect(sum_of_squares(2)).toBe(5)
+    expect(sum_of_squares(3)).toBe(14)
+    expect(sum_of_squares(10)).toBe(385)
+
+    square_of_sums = (n) ->
+      sum = 0
+      sum += i for i in [0..n]
+      sum*sum
+
+    expect(square_of_sums(0)).toBe(0)
+    expect(square_of_sums(1)).toBe(1)
+    expect(square_of_sums(2)).toBe(9)
+    expect(square_of_sums(3)).toBe(36)
+    expect(square_of_sums(10)).toBe(3025)
+
+    difference_between_sum_of_squares_and_square_of_sums = (n) ->
+      square_of_sums(n) - sum_of_squares(n)
+
+    expect(difference_between_sum_of_squares_and_square_of_sums(0)).toBe(0)
+    expect(difference_between_sum_of_squares_and_square_of_sums(1)).toBe(0)
+    expect(difference_between_sum_of_squares_and_square_of_sums(2)).toBe(4)
+    expect(difference_between_sum_of_squares_and_square_of_sums(10)).toBe(2640)
 
 
   it 'should find the 10001st prime', ->
